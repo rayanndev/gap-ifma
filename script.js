@@ -1,80 +1,56 @@
-// Modo Escuro com Interruptor de Lanterna
+// Função para alternar o modo escuro
 function toggleDarkMode() {
-    const body = document.body;
-    const darkModeButton = document.querySelector(".dark-mode-button");
-
-    body.classList.toggle("dark-mode");
-    localStorage.setItem("darkMode", body.classList.contains("dark-mode") ? "enabled" : "disabled");
-
-    // Animação do interruptor
-    if (body.classList.contains("dark-mode")) {
-        darkModeButton.innerHTML = `<i class="fas fa-sun"></i> Modo Claro`;
-        darkModeButton.style.backgroundColor = "#333";
-    } else {
-        darkModeButton.innerHTML = `<i class="fas fa-moon"></i> Modo Escuro`;
-        darkModeButton.style.backgroundColor = "#4CAF50";
-    }
+    document.body.classList.toggle('dark-mode');
 }
 
-// Verificar modo ao carregar a página
-document.addEventListener("DOMContentLoaded", () => {
-    const body = document.body;
-    const darkModeButton = document.querySelector(".dark-mode-button");
-
-    if (localStorage.getItem("darkMode") === "enabled") {
-        body.classList.add("dark-mode");
-        darkModeButton.innerHTML = `<i class="fas fa-sun"></i> Modo Claro`;
-        darkModeButton.style.backgroundColor = "#333";
-    } else {
-        darkModeButton.innerHTML = `<i class="fas fa-moon"></i> Modo Escuro`;
-        darkModeButton.style.backgroundColor = "#4CAF50";
-    }
-});
-// Mostrar botão de quiz ao marcar como concluído
-document.addEventListener("DOMContentLoaded", function () {
-    let checkboxes = document.querySelectorAll(".progress-checkbox");
-
-    checkboxes.forEach((checkbox, index) => {
-        let storedValue = localStorage.getItem("card" + index);
-        if (storedValue === "checked") {
-            checkbox.checked = true;
-            checkbox.parentElement.querySelector(".quiz-button").style.display = "block";
-        }
-
-        checkbox.addEventListener("change", function () {
-            localStorage.setItem("card" + index, checkbox.checked ? "checked" : "unchecked");
-            checkbox.parentElement.querySelector(".quiz-button").style.display = checkbox.checked ? "block" : "none";
-        });
-    });
-
-    // Redirecionar para o quiz
-    document.querySelectorAll(".quiz-button").forEach(button => {
-        button.addEventListener("click", () => {
-            let quizLink = button.parentElement.getAttribute("data-quiz");
-            window.open(quizLink, "_blank");
-        });
-    });
-});
-
-// Pesquisa de Conteúdo
+// Função para buscar conteúdo
 function searchContent() {
-    let searchText = document.getElementById("search").value.toLowerCase();
-    let cards = document.querySelectorAll(".card");
+    const searchTerm = document.getElementById('search').value;
+    alert(`Você buscou por: ${searchTerm}`);
+}
 
-    cards.forEach(card => {
-        if (card.textContent.toLowerCase().includes(searchText)) {
-            card.style.display = "block";
+// Função para postar comentário
+function postComment() {
+    const commentText = document.getElementById('comment').value;
+    if (commentText.trim() === "") {
+        alert("Por favor, escreva um comentário antes de enviar.");
+        return;
+    }
+
+    const commentSection = document.getElementById('comment-section');
+    const newComment = document.createElement('div');
+    newComment.classList.add('comment');
+    newComment.innerHTML = `<p>${commentText}</p>`;
+    commentSection.appendChild(newComment);
+
+    // Limpar a caixa de texto após o envio
+    document.getElementById('comment').value = "";
+}
+
+// Redirecionar para o vídeo ao clicar no card
+document.querySelectorAll('.card').forEach(card => {
+    card.addEventListener('click', function() {
+        const videoURL = this.getAttribute('data-video');
+        window.open(videoURL, '_blank');
+    });
+});
+
+// Mostrar botões de quiz ao marcar como concluído
+document.querySelectorAll('.progress-checkbox').forEach(checkbox => {
+    checkbox.addEventListener('change', function() {
+        const quizButton = this.parentElement.querySelector('.quiz-button');
+        if (this.checked) {
+            quizButton.style.display = 'block';
         } else {
-            card.style.display = "none";
+            quizButton.style.display = 'none';
         }
     });
-}
+});
 
-// Área de Comentários
-function postComment() {
-    let comment = document.getElementById("comment").value;
-    if (comment.trim()) {
-        document.getElementById("comment-section").innerHTML += `<p>${comment}</p>`;
-        document.getElementById("comment").value = "";
-    }
-}
+// Redirecionar para o quiz ao clicar no botão
+document.querySelectorAll('.quiz-button').forEach(button => {
+    button.addEventListener('click', function() {
+        const quizURL = this.parentElement.getAttribute('data-quiz');
+        window.open(quizURL, '_blank');
+    });
+});
