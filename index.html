@@ -11,11 +11,12 @@
     <header>
         <div class="top-bar">
             <div class="menu">
-                <a href="#">Para alunos</a>
-                <a href="#">Para professores</a>
-                <a href="https://youtu.be/TOGXn2_mkzE" target="_blank">Simulador de Experimentos</a>
+                <a href="https://gap-calculadora-molecular.vercel.app" target="_blank">Calculadora Molecular</a>
+                <a href="https://www.todamateria.com.br/tabela-periodica/" target="_blank">Tabela Periódica</a>
+                <a href="https://phet.colorado.edu/pt_BR/simulations/filter?subjects=chemistry&type=html" target="_blank">Simulador de Experimentos</a>
             </div>
             <div class="logo">
+                <p>Olá, Rayan</p>
                 <img src="estilização/gap.png" alt="Logo do Instituto Federal">
             </div>
         </div>
@@ -34,19 +35,19 @@
         </div>
 
         <div class="card-container">
-            <div class="card" data-quiz="https://rachacuca.com.br/quiz/208009/introducao-a-quimica-i/">
+            <div class="card" data-video="https://youtu.be/XDBwYrWFZUQ?si=QAAV4zkGK6SyqEQ5" data-quiz="https://rachacuca.com.br/quiz/208009/introducao-a-quimica-i/">
                 <img src="estilização/molecula.png" alt="Molécula">
                 <p>Introdução à Química</p>
                 <input type="checkbox" class="progress-checkbox"> Marcar como concluído
                 <button class="quiz-button" style="display: none;">Iniciar Quiz</button>
             </div>
-            <div class="card" data-quiz="https://www.quiz.com.br/quiz/615/reacoes-quimicas-i/">
+            <div class="card" data-video="https://youtu.be/u7NSnN9UBB4?si=ASUHqPFXTnObuR9G" data-quiz="https://www.quiz.com.br/quiz/615/reacoes-quimicas-i/">
                 <img src="estilização/re.png" alt="Reações Químicas">
                 <p>Reações Químicas</p>
                 <input type="checkbox" class="progress-checkbox"> Marcar como concluído
                 <button class="quiz-button" style="display: none;">Iniciar Quiz</button>
             </div>
-            <div class="card" data-quiz="https://pt.quizur.com/trivia/quiz-distribuicao-eletronica-HxAJ">
+            <div class="card" data-video="https://youtu.be/qqcIOzOCO4o?si=vhJPlpHn4R7GXcgK" data-quiz="https://pt.quizur.com/trivia/quiz-distribuicao-eletronica-HxAJ">
                 <img src="estilização/image-removebg-preview (2).png" alt="Distribuição Eletrônica">
                 <p>Distribuição Eletrônica</p>
                 <input type="checkbox" class="progress-checkbox"> Marcar como concluído
@@ -54,25 +55,21 @@
             </div>
         </div>
 
-        <h2>⚛️ Calculadora de Massa Molecular</h2>
-        <div class="calculator">
-            <input type="text" id="formula" placeholder="Digite a fórmula química">
-            <button onclick="calculateMass()"><i class="fas fa-calculator"></i> Calcular</button>
-            <p id="mass-result"></p>
+        <h2>💬 Deixe um Comentário ao Professor</h2>
+        <div class="comment-box">
+            <textarea id="comment" placeholder="Escreva seu comentário..."></textarea>
+            <button onclick="postComment()"><i class="fas fa-paper-plane"></i> Enviar</button>
         </div>
-
-        <h2>💬 Deixe um Comentário</h2>
-        <textarea id="comment" placeholder="Escreva seu comentário..."></textarea>
-        <button onclick="postComment()"><i class="fas fa-paper-plane"></i> Enviar</button>
         <div id="comment-section"></div>
     </main>
 
     <footer>
-        <p>&copy; 2023 Instituto Federal. Todos os direitos reservados.</p> <br>
-        <img src="estilização/ifma.png" alt="Reações Químicas">
+        <div>
+            <p>&copy; 2025 Instituto Federal. Todos os direitos reservados.</p>
+        </div>
+        <img src="estilização/gap.png" alt="Logo do GAP">
     </footer>
 
     <script src="script.js"></script>
-    
 </body>
 </html>
